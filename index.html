@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0; /* إزالة الحواف الداخلية */
+            height: 100%; /* جعل الجسم بارتفاع كامل الصفحة */
+            overflow-x: hidden; /* يمنع التمرير الأفقي */
+            display: flex; /* استخدام flexbox للجسم */
+            flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+            align-items: center; /* محاذاة العناصر في المنتصف */
+            background-color: #f4f4f4; /* لون الخلفية العامة */
+        }
+
+        h1 {
+            font-size: 48px; /* حجم الخط */
+            margin: -5px 0; /* المسافة العلوية والسفلية */
+            font-weight: bold; /* سمك الخط */
+            line-height: 1; /* ارتفاع السطر */
+            display: flex; /* نمط العرض */
+            flex-direction: column; /* اتجاه العمود */
+            align-items: center; /* محاذاة العناصر في المنتصف */
+            background: linear-gradient(to bottom, #07BEEA 50%, #FFFFFF 50%); /* خلفية منقسمة عمودياً */
+            color: white; /* لون النص الافتراضي (لـ Melion) */
+            padding: 10px; /* مسافة داخلية */
+            width: 100vw; /* عرض كامل الشاشة */
+            box-sizing: border-box; /* يتضمن الحدود والحشو في العرض الإجمالي */
+            position: relative; /* لجعل الخلفية تغطي كامل العرض */
+            left: 50%; /* إزاحة الخلفية */
+            transform: translateX(-50%); /* إزاحة الخلفية إلى المركز */
+        }
+
+        h1 span {
+            text-align: center; /* محاذاة النص في المنتصف */
+            color: black; /* لون نص Tech */
+            width: 100%; /* محاذاة العرض بالكامل */
+            transform: translateX(50px); /* تحريك Tech إلى اليمين */
+        }
+
+        /* تنسيق الأزرار */
+        .social-buttons {
+            margin-top: 20px; /* مسافة فوق الأزرار */
+            display: flex; /* استخدام flexbox */
+            flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+            align-items: center; /* محاذاة العناصر في المنتصف */
+            gap: 10px; /* مسافة بين الأزرار */
+            width: 100%; /* عرض كامل للأزرار */
+            max-width: 500px; /* الحد الأقصى للعرض */
+        }
+
+        .social-button {
+            display: flex; /* استخدام flexbox */
+            align-items: center; /* محاذاة العناصر في المنتصف */
+            justify-content: center; /* محاذاة العناصر في المنتصف */
+            color: white; /* لون النص */
+            padding: 15px 20px; /* مسافة داخلية */
+            border-radius: 10px; /* زوايا مستديرة */
+            text-decoration: none; /* إزالة التسطير */
+            font-size: 20px; /* حجم النص */
+            transition: background-color 0.3s, transform 0.3s; /* تأثير الانتقال عند التحويم */
+            width: 200px; /* تحديد عرض الأزرار */
+            text-align: center; /* محاذاة النص في المنتصف */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ظل للمستطيلات */
+            opacity: 0; /* إخفاء الأزرار في البداية */
+            animation: fadeIn 0.6s forwards; /* إضافة تأثير الظهور */
+        }
+
+        /* تعريف تأثير الظهور */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* بدءاً من الأسفل */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); /* نهاية التأثير في موضعه الأصلي */
+            }
+        }
+
+        .telegram {
+            background-color: #0088cc; /* لون تلغرام */
+        }
+
+        .facebook {
+            background-color: #3b5998; /* لون فايسبوك */
+        }
+
+        .instagram {
+            background-color: #e1306c; /* لون انستغرام */
+        }
+
+        .youtube {
+            background-color: #ff0000; /* لون يوتيوب */
+        }
+
+        .social-button:hover {
+            opacity: 0.9; /* تغيير الشفافية عند التحويم */
+            transform: translateY(-2px); /* تأثير رفع المستطيل عند التحويم */
+        }
+
+        .social-button i {
+            margin-left: 8px; /* مسافة بين النص والأيقونة */
+        }
+
+        /* إضافة تأثير الظهور لكل زر بشكل تدريجي */
+        .social-button:nth-child(1) { animation-delay: 0.1s; }
+        .social-button:nth-child(2) { animation-delay: 0.2s; }
+        .social-button:nth-child(3) { animation-delay: 0.3s; }
+        .social-button:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <h1>Melion<span>Tech</span></h1>
+    <div class="social-buttons">
+        <a class="social-button telegram" href="https://t.me/" target="_blank" aria-label="تلغرام">MelionTech<i class="fab fa-telegram"></i></a>
+        <a class="social-button facebook" href="https://www.facebook.com/" target="_blank" aria-label="فايسبوك">MelionTech<i class="fab fa-facebook-f"></i></a>
+        <a class="social-button instagram" href="https://www.instagram.com/" target="_blank" aria-label="انستغرام">MelionTech<i class="fab fa-instagram"></i></a>
+        <a class="social-button youtube" href="https://www.youtube.com/" target="_blank" aria-label="يوتيوب">MelionTech<i class="fab fa-youtube"></i></a>
+    </div>
+</body>
+</html>
