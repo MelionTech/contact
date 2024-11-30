@@ -21,22 +21,19 @@
             margin: 0;
             line-height: 1.5;
             overflow: hidden;
-            position: relative; /* لجعل الشريط السفلي في الأسفل */
         }
 
         .cover {
             width: 100%;
-            height: 130px;
+            height: 150px;
             background-image: url('https://i.imgur.com/gj3fZfZ.png');
             background-size: cover;
             background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             transform: scale(0);
             animation: scaleUp 0.3s forwards 0.2s;
         }
+
         .profile {
             width: 100px;
             height: 100px;
@@ -44,25 +41,36 @@
             background-size: cover;
             background-position: center;
             border-radius: 50%;
-            margin-top: -75px;
+            margin-top: -70px;
             margin-bottom: 10px;
             transform: scale(0);
             animation: scaleUp 0.3s forwards 0.4s;
         }
+
         .title {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             transform: scale(0);
             animation: scaleUp 0.3s forwards 0.6s;
-            padding: 2px;
-            border: 2px solid #0088cc;
-            border-radius: 5px;
-            background-color: #ffffff;
+            padding: 8px 12px; /* حواف داخلية */
+            color: white; /* لون النص */
+            background-color: #0088cc; /* لون خلفية */
+            border-radius: 20px; /* انحناء دائري */
+            display: flex;
+            align-items: center;
+            cursor: pointer; /* تغيير المؤشر */
         }
+
+        .telegram-icon {
+            margin-left: 0; /* الأيقونة إلى اليسار */
+            width: 25px;
+            height: auto;
+        }
+
         .description {
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: white;
             font-family: 'Cairo', sans-serif;
             transform: scale(0);
@@ -72,8 +80,9 @@
         .container, .new-container {
             display: flex;
             gap: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
+
         .box {
             width: 70px;
             height: 50px;
@@ -85,13 +94,14 @@
             animation: explode 0.5s forwards;
             cursor: pointer;
         }
+
         .box1 { background-color: #0088cc; border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
         .box2 { background-color: #ff0000; border-radius: 0; }
         .box3 { background-color: #25D366; border-radius: 0; }
         .box4 { background-color: #29ABE0; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
-        
+
         .new-box {
-            width: 95px; 
+            width: 85px;
             height: 50px;
             display: flex;
             justify-content: center;
@@ -101,18 +111,18 @@
             animation: explode 0.5s forwards;
             cursor: pointer;
         }
-        .new-box5 { 
-            background-color: #1DA1F2; 
-            border-top-left-radius: 10px; 
-            border-bottom-left-radius: 10px; 
-        }
+
+        .new-box5 { background-color: #1DA1F2; border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
         .new-box6 { background-color: #E1306C; }
         .new-box7 {
-            width: 293px;
+            width: 280px;
             height: 50px;
             background-color: #FFD700;
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
+            color: black; /* لون النص */
+            font-weight: bold; /* جعل النص سميك */
+            font-family: 'Cairo', sans-serif; /* استخدام خط كايرو */
         }
 
         .podcast-box {
@@ -126,64 +136,58 @@
             width: 30px;
             height: auto;
         }
+        
         @keyframes explode {
             0% { opacity: 0; transform: scale(0.1); }
             50% { opacity: 1; transform: scale(1.2); }
             100% { opacity: 1; transform: scale(1); }
         }
+        
         @keyframes scaleUp {
             0% { transform: scale(0); }
             100% { transform: scale(1); }
         }
 
         .custom-popup {
-            margin-top: 50px; /* رفع النافذة عن المركز */
+            margin-top: 50px;
         }
 
         .swal2-textarea {
-            text-align: right; /* محاذاة النص لليمين */
-            direction: rtl; /* تعيين اتجاه الكتابة لليمين */
-        }
-
-        .footer {
-            width: 100%;
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            position: absolute; /* لجعل الشريط في الأسفل */
-            bottom: 0; /* تحديد موقعه في أسفل الصفحة */
-            left: 0;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
+            text-align: right;
+            direction: rtl;
         }
     </style>
 </head>
 <body>
     <div class="cover"></div>
     <div class="profile"></div>
-    <div class="title">MelionTech</div>
+    
+    <!-- عنوان "MelionTech" مع أيقونة تلغرام -->
+    <div class="title" onclick="window.open('https://telegram.me/meliontech', '_blank')">
+        <img src="https://img.icons8.com/ios-filled/50/FFFFFF/telegram.png" alt="Telegram icon" class="telegram-icon"> 
+        MelionTech
+    </div>
+    
     <div class="description">صانع محتوى تقني ، نفسي و ديني</div>
 
     <div class="container">
         <div class="box box1" style="animation-delay: 1.2s;" onclick="window.open('https://telegram.me/meliontech', '_blank')"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/telegram.png" alt="Telegram icon"></div>
         <div class="box box2" style="animation-delay: 1.4s;" onclick="window.open('https://youtube.com/@meliontech', '_blank')"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/youtube-play.png" alt="YouTube icon"></div>
-        <div class="box box3" style="animation-delay: 1.6s;" onclick="window.open('https://wa.me/+213549412341', '_blank')"><i class="fab fa-whatsapp" style="color: white; font-size: 30px;"></i></div>
+        <div class="box box3" style="animation-delay: 1.6s;" onclick="window.open('https://wa.me/+213549412341', '_blank')"><i class="fab fa-whatsapp" style="color: white; font-size: 25px;"></i></div>
         <div class="box box4" style="animation-delay: 1.8s;" onclick="window.open('https://ko-fi.com/meliontech', '_blank')"><img src="https://external-content.duckduckgo.com/iu/?u=https://i.imgur.com/DfNbezF.png" alt="Ko-fi icon"></div>
     </div>
 
     <div class="new-container">
-        <div class="new-box new-box5" style="animation-delay: 2.0s;" onclick="window.open('https://x.com/meliontech', '_blank')"><i class="fab fa-twitter" style="color: white; font-size: 30px;"></i></div>
-        <div class="new-box new-box6" style="animation-delay: 2.2s;" onclick="window.open('https://instagram.com/meliontech', '_blank')"><i class="fab fa-instagram" style="color: white; font-size: 30px;"></i></div>
-        <div class="new-box podcast-box" style="animation-delay: 2.4s;" onclick="window.open('https://ar-podcast.com/meliontech/', '_blank')"><i class="fas fa-podcast" style="color: white; font-size: 30px;"></i></div>
+        <div class="new-box new-box5" style="animation-delay: 2.0s;" onclick="window.open('https://x.com/meliontech', '_blank')"><i class="fab fa-twitter" style="color: white; font-size: 25px;"></i></div>
+        <div class="new-box new-box6" style="animation-delay: 2.2s;" onclick="window.open('https://instagram.com/meliontech', '_blank')"><i class="fab fa-instagram" style="color: white; font-size: 25px;"></i></div>
+        <div class="new-box podcast-box" style="animation-delay: 2.4s;" onclick="window.open('https://ar-podcast.com/meliontech/', '_blank')"><i class="fas fa-podcast" style="color: white; font-size: 25px;"></i></div>
     </div>
     
     <div class="new-container">
-        <div class="new-box new-box7" style="animation-delay: 2.5s;" onclick="openTextInput()"><i class="fas fa-comment" style="color: white; font-size: 30px;"></i></div>
+        <div class="new-box new-box7" style="animation-delay: 2.5s;" onclick="openTextInput()">
+            إرسال كمجهول
+        </div>
     </div>
-
-    <div class="footer">created by bidjadq</div>
 
     <script>
         function openTextInput() {
@@ -200,7 +204,7 @@
                 },
                 inputAttributes: {
                     dir: 'rtl',
-                    maxlength: 4000 // تحديد الحد الأقصى للأحرف
+                    maxlength: 4000
                 },
                 preConfirm: (text) => {
                     if (!text) {
