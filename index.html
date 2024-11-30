@@ -3,124 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية</title>
+    <title>مستطيل مقسم</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        html, body {
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-color: #787878;
             margin: 0;
-            padding: 0; /* إزالة الحواف الداخلية */
-            height: 100%; /* جعل الجسم بارتفاع كامل الصفحة */
-            overflow-x: hidden; /* يمنع التمرير الأفقي */
-            display: flex; /* استخدام flexbox للجسم */
-            flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-            align-items: center; /* محاذاة العناصر في المنتصف */
-            background-color: #f4f4f4; /* لون الخلفية العامة */
+            line-height: 1.5;
+            overflow: hidden;
+            position: relative; /* لجعل الشريط السفلي في الأسفل */
         }
 
-        h1 {
-            font-size: 48px; /* حجم الخط */
-            margin: -5px 0; /* المسافة العلوية والسفلية */
-            font-weight: bold; /* سمك الخط */
-            line-height: 1; /* ارتفاع السطر */
-            display: flex; /* نمط العرض */
-            flex-direction: column; /* اتجاه العمود */
-            align-items: center; /* محاذاة العناصر في المنتصف */
-            background: linear-gradient(to bottom, #07BEEA 50%, #FFFFFF 50%); /* خلفية منقسمة عمودياً */
-            color: white; /* لون النص الافتراضي (لـ Melion) */
-            padding: 10px; /* مسافة داخلية */
-            width: 100vw; /* عرض كامل الشاشة */
-            box-sizing: border-box; /* يتضمن الحدود والحشو في العرض الإجمالي */
-            position: relative; /* لجعل الخلفية تغطي كامل العرض */
-            left: 50%; /* إزاحة الخلفية */
-            transform: translateX(-50%); /* إزاحة الخلفية إلى المركز */
+        .cover {
+            width: 100%;
+            height: 130px;
+            background-image: url('https://i.imgur.com/gj3fZfZ.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            transform: scale(0);
+            animation: scaleUp 0.3s forwards 0.2s;
+        }
+        .profile {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://i.imgur.com/L6Qcaxh.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin-top: -75px;
+            margin-bottom: 10px;
+            transform: scale(0);
+            animation: scaleUp 0.3s forwards 0.4s;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transform: scale(0);
+            animation: scaleUp 0.3s forwards 0.6s;
+            padding: 2px;
+            border: 2px solid #0088cc;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            transform: scale(0);
+            animation: scaleUp 0.3s forwards 0.8s;
         }
 
-        h1 span {
-            text-align: center; /* محاذاة النص في المنتصف */
-            color: black; /* لون نص Tech */
-            width: 100%; /* محاذاة العرض بالكامل */
-            transform: translateX(50px); /* تحريك Tech إلى اليمين */
+        .container, .new-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .box {
+            width: 70px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.1);
+            animation: explode 0.5s forwards;
+            cursor: pointer;
+        }
+        .box1 { background-color: #0088cc; border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+        .box2 { background-color: #ff0000; border-radius: 0; }
+        .box3 { background-color: #25D366; border-radius: 0; }
+        .box4 { background-color: #29ABE0; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+        
+        .new-box {
+            width: 95px; 
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.1);
+            animation: explode 0.5s forwards;
+            cursor: pointer;
+        }
+        .new-box5 { 
+            background-color: #1DA1F2; 
+            border-top-left-radius: 10px; 
+            border-bottom-left-radius: 10px; 
+        }
+        .new-box6 { background-color: #E1306C; }
+        .new-box7 {
+            width: 293px;
+            height: 50px;
+            background-color: #FFD700;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
-        /* تنسيق الأزرار */
-        .social-buttons {
-            margin-top: 20px; /* مسافة فوق الأزرار */
-            display: flex; /* استخدام flexbox */
-            flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-            align-items: center; /* محاذاة العناصر في المنتصف */
-            gap: 10px; /* مسافة بين الأزرار */
-            width: 100%; /* عرض كامل للأزرار */
-            max-width: 500px; /* الحد الأقصى للعرض */
+        .podcast-box {
+            background-color: #9D40D5; 
+            cursor: pointer; 
+            border-top-right-radius: 10px; 
+            border-bottom-right-radius: 10px; 
         }
 
-        .social-button {
-            display: flex; /* استخدام flexbox */
-            align-items: center; /* محاذاة العناصر في المنتصف */
-            justify-content: center; /* محاذاة العناصر في المنتصف */
-            color: white; /* لون النص */
-            padding: 15px 20px; /* مسافة داخلية */
-            border-radius: 10px; /* زوايا مستديرة */
-            text-decoration: none; /* إزالة التسطير */
-            font-size: 20px; /* حجم النص */
-            transition: background-color 0.3s, transform 0.3s; /* تأثير الانتقال عند التحويم */
-            width: 200px; /* تحديد عرض الأزرار */
-            text-align: center; /* محاذاة النص في المنتصف */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ظل للمستطيلات */
-            opacity: 0; /* إخفاء الأزرار في البداية */
-            animation: fadeIn 0.6s forwards; /* إضافة تأثير الظهور */
+        img {
+            width: 30px;
+            height: auto;
+        }
+        @keyframes explode {
+            0% { opacity: 0; transform: scale(0.1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes scaleUp {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
         }
 
-        /* تعريف تأثير الظهور */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px); /* بدءاً من الأسفل */
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0); /* نهاية التأثير في موضعه الأصلي */
-            }
+        .custom-popup {
+            margin-top: 50px; /* رفع النافذة عن المركز */
         }
 
-        .telegram {
-            background-color: #0088cc; /* لون تلغرام */
+        .swal2-textarea {
+            text-align: right; /* محاذاة النص لليمين */
+            direction: rtl; /* تعيين اتجاه الكتابة لليمين */
         }
 
-        .facebook {
-            background-color: #3b5998; /* لون فايسبوك */
+        .footer {
+            width: 100%;
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute; /* لجعل الشريط في الأسفل */
+            bottom: 0; /* تحديد موقعه في أسفل الصفحة */
+            left: 0;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
         }
-
-        .instagram {
-            background-color: #e1306c; /* لون انستغرام */
-        }
-
-        .youtube {
-            background-color: #ff0000; /* لون يوتيوب */
-        }
-
-        .social-button:hover {
-            opacity: 0.9; /* تغيير الشفافية عند التحويم */
-            transform: translateY(-2px); /* تأثير رفع المستطيل عند التحويم */
-        }
-
-        .social-button i {
-            margin-left: 8px; /* مسافة بين النص والأيقونة */
-        }
-
-        /* إضافة تأثير الظهور لكل زر بشكل تدريجي */
-        .social-button:nth-child(1) { animation-delay: 0.1s; }
-        .social-button:nth-child(2) { animation-delay: 0.2s; }
-        .social-button:nth-child(3) { animation-delay: 0.3s; }
-        .social-button:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <h1>Melion<span>Tech</span></h1>
-    <div class="social-buttons">
-        <a class="social-button telegram" href="https://t.me/" target="_blank" aria-label="تلغرام">MelionTech<i class="fab fa-telegram"></i></a>
-        <a class="social-button facebook" href="https://www.facebook.com/" target="_blank" aria-label="فايسبوك">MelionTech<i class="fab fa-facebook-f"></i></a>
-        <a class="social-button instagram" href="https://www.instagram.com/" target="_blank" aria-label="انستغرام">MelionTech<i class="fab fa-instagram"></i></a>
-        <a class="social-button youtube" href="https://www.youtube.com/" target="_blank" aria-label="يوتيوب">MelionTech<i class="fab fa-youtube"></i></a>
+    <div class="cover"></div>
+    <div class="profile"></div>
+    <div class="title">MelionTech</div>
+    <div class="description">صانع محتوى تقني ، نفسي و ديني</div>
+
+    <div class="container">
+        <div class="box box1" style="animation-delay: 1.2s;" onclick="window.open('https://telegram.me/meliontech', '_blank')"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/telegram.png" alt="Telegram icon"></div>
+        <div class="box box2" style="animation-delay: 1.4s;" onclick="window.open('https://youtube.com/@meliontech', '_blank')"><img src="https://img.icons8.com/ios-filled/50/FFFFFF/youtube-play.png" alt="YouTube icon"></div>
+        <div class="box box3" style="animation-delay: 1.6s;" onclick="window.open('https://wa.me/+213549412341', '_blank')"><i class="fab fa-whatsapp" style="color: white; font-size: 30px;"></i></div>
+        <div class="box box4" style="animation-delay: 1.8s;" onclick="window.open('https://ko-fi.com/meliontech', '_blank')"><img src="https://external-content.duckduckgo.com/iu/?u=https://i.imgur.com/DfNbezF.png" alt="Ko-fi icon"></div>
     </div>
+
+    <div class="new-container">
+        <div class="new-box new-box5" style="animation-delay: 2.0s;" onclick="window.open('https://x.com/meliontech', '_blank')"><i class="fab fa-twitter" style="color: white; font-size: 30px;"></i></div>
+        <div class="new-box new-box6" style="animation-delay: 2.2s;" onclick="window.open('https://instagram.com/meliontech', '_blank')"><i class="fab fa-instagram" style="color: white; font-size: 30px;"></i></div>
+        <div class="new-box podcast-box" style="animation-delay: 2.4s;" onclick="window.open('https://ar-podcast.com/meliontech/', '_blank')"><i class="fas fa-podcast" style="color: white; font-size: 30px;"></i></div>
+    </div>
+    
+    <div class="new-container">
+        <div class="new-box new-box7" style="animation-delay: 2.5s;" onclick="openTextInput()"><i class="fas fa-comment" style="color: white; font-size: 30px;"></i></div>
+    </div>
+
+    <div class="footer">created by bidjadq</div>
+
+    <script>
+        function openTextInput() {
+            Swal.fire({
+                title: 'أدخل نصك هنا',
+                input: 'textarea',
+                inputPlaceholder: 'اكتب نصك...',
+                showCancelButton: true,
+                confirmButtonText: 'إرسال',
+                cancelButtonText: 'إلغاء',
+                position: 'top',
+                customClass: {
+                    popup: 'custom-popup'
+                },
+                inputAttributes: {
+                    dir: 'rtl',
+                    maxlength: 4000 // تحديد الحد الأقصى للأحرف
+                },
+                preConfirm: (text) => {
+                    if (!text) {
+                        Swal.showValidationMessage('يجب كتابة نص');
+                    } else if (text.length > 4000) {
+                        Swal.showValidationMessage('تجاوز الحد الأقصى المسموح به (4000 حرف)');
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const inputText = result.value;
+                    sendMessageToTelegram(inputText);
+                }
+            });
+
+            document.querySelector('.swal2-textarea').addEventListener('input', function() {
+                const maxLength = 4000;
+                if (this.value.length >= maxLength) {
+                    this.value = this.value.substring(0, maxLength);
+                }
+            });
+        }
+
+        function sendMessageToTelegram(message) {
+            const token = '8124666794:AAF9gSTuY8kirf-xws5rTZulfTcm3oaj82Q';
+            const chatId = '1693067897';
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    Swal.fire('تم إرسال الرسالة بنجاح!');
+                } else {
+                    Swal.fire('فشل في إرسال الرسالة: ' + data.description);
+                }
+            })
+            .catch(error => {
+                Swal.fire('خطأ في الاتصال: ' + error);
+            });
+        }
+    </script>
 </body>
 </html>
